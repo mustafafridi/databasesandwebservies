@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - EventPlanner</title>
+    <link rel="stylesheet" type="text/css" href="event-planning-style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="logo">EventPlanner</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <!-- Include your navigation links here -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="active"><a href="maintenance.html">Maintenance</a></li>
+                <a class="login-button" href="#">Login</a>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>Maintenance Page - Vendor</h2>
+                <p>Insert new vendor information:</p>
+                <!-- Form submission for vendor information -->
+                <form action="insert_vendor.php" method="POST">
+                    <label for="vendorName">Vendor Name:</label>
+                    <input type="text" id="vendorName" name="vendorName" required><br>
+
+                    <label for="vendorType">Vendor Type:</label>
+                    <input type="text" id="vendorType" name="vendorType" required><br>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone"><br>
+
+                    <label for="website">Website:</label>
+                    <input type="url" id="website" name="website"><br>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required><br>
+
+                    <label for="zipCode">Zip Code:</label>
+                    <input type="number" id="zipCode" name="zipCode" required><br>
+
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" required><br>
+
+                    <label for="cost">Cost:</label>
+                    <input type="number" id="cost" name="cost" step="0.01" required><br>
+
+                    <button type="submit">Insert</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2023 EventPlanner | <a href="imprint.html">Imprint</a>
+        </div>
+    </footer>
+</body>
+</html>
