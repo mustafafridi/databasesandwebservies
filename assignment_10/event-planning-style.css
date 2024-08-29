@@ -1,0 +1,122 @@
+/* Define the primary color palette */
+body {
+  background-color: #f0f0f0; /* A light gray background for readability */
+  font-family: Arial, sans-serif;
+  color: #333; /* Dark gray text color for readability */
+}
+
+/* Header styling */
+header {
+  background-color: #eb8c8c; /*Pink Color - Header for a formal touch */
+  color: #fff; /* White Text */
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* Logo styling */
+#logo {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Nav menu */
+nav {
+  background-color: #eb8c8c; /* Matching the header for consistency */
+  text-align: center;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin: 0 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Style the login button */
+.login-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #e74c3c; /* A bold red button for action */
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 18px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* hover button */
+.login-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+
+}
+
+/* Call-to-action button */
+.button {
+  background-color: #ff8800; /* A vibrant orange button for calls to action */
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Feature sections */
+.feature {
+  padding: 20px;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+
+
+
+/* Style the image container */
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Style individual images */
+.image-container img {
+  max-width: 30%;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+/* Image hover effect */
+.image-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer styling */
+footer {
+  background-color: #eb8c8c; 
+  color: rgb(255, 0, 0);
+  text-align: center;
+  padding: 20px 0;
+}

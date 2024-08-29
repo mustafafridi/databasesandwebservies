@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - EventPlanner</title>
+    <link rel="stylesheet" type="text/css" href="event-planning-style.css">
+    <style>
+        /* Add custom styles for the filters and search bar */
+        .filter-section {
+            margin-top: 20px;
+        }
+
+        .filter-label {
+            font-weight: bold;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .search-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="logo">EventPlanner</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a class="login-button" href="login.php">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>Search for Events or Services</h2>
+                <p>Enter your search query and apply filters below:</p>
+
+                <!-- Buttons to Select Search Form -->
+                <button onclick="navigateTo('search_vendor.html')">Search Vendors</button>
+                <button onclick="navigateTo('search_full_guest_list.html')">Search Full Guest List</button>
+                <button onclick="navigateTo('search_highest_venue_cost.html')">Search Highest Venue Cost</button>
+
+                <!-- Search Forms -->
+                <div id="vendorForm" style="display: none;">
+                    <form action="search_results_vendor.php" method="GET">
+                        <!-- Add vendor search form elements here -->
+                        <label for="vendorName">Vendor Name:</label>
+                        <input type="text" id="vendorName" name="vendorName" class="search-bar">
+                        <label for="vendorType">Vendor Type:</label>
+                        <select id="vendorType" name="vendorType" class="filter-input">
+                            <option value="Catering">Catering</option>
+                            <option value="Venue">Venue</option>
+                        </select>
+                        <!-- Add more search filters as needed -->
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
+
+                <div id="guestListForm" style="display: none;">
+                    <form action="search_results_guest_list.php" method="GET">
+                        <!-- Add full guest list search form elements here -->
+                        <label for="eventDate">Event Date:</label>
+                        <input type="date" id="eventDate" name="eventDate" class="search-bar">
+                        <!-- Add more search filters as needed -->
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
+
+                <div id="highestVenueCostForm" style="display: none;">
+                    <form action="search_results_highest_venue_cost.php" method="GET">
+                        <!-- Add highest venue cost search form elements here -->
+                        <label for="venueType">Venue Type:</label>
+                        <select id="venueType" name="venueType" class="filter-input">
+                            <option value="Indoor">Indoor</option>
+                            <option value="Outdoor">Outdoor</option>
+                        </select>
+                        <!-- Add more search filters as needed -->
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2023 EventPlanner | <a href="imprint.html">Imprint</a>
+        </div>
+    </footer>
+
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>

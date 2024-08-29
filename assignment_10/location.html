@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Location Map</title>
+    <!-- Include Leaflet from CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <div id="map" style="height: 500px;"></div>
+
+    <script>
+        // Function to initialize the map
+        function initMap(lat, lon, ip) {
+            var map = L.map('map').setView([lat, lon], 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            L.marker([lat, lon]).addTo(map)
+                .bindPopup('IP Address: ' + ip)
+                .openPopup();
+        }
+
+        // Fetch IP-based location using ipinfo.io
+        function fetchIPInfo() {
+            fetch('http://ipinfo.io?token=59889c2140691f')
+                .then(response => response.json())
+                .then(data => {
+                    var lat = parseFloat(data.loc.split(',')[0]);
+                    var lon = parseFloat(data.loc.split(',')[1]);
+                    var ip = data.ip;
+
+                    initMap(lat, lon, ip);
+                })
+                .catch(error => {
+                    console.error("Error fetching IP information:", error);
+
+                    // Default to a fallback location (e.g., city center)
+                    initMap(0, 0, 'Fallback IP');
+                });
+        }
+
+        // Call the function to fetch IP information
+        fetchIPInfo();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - EventPlanner</title>
+    <link rel="stylesheet" type="text/css" href="event-planning-style.css">
+    <!-- Add jQuery library (you can include it from a CDN) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Add custom styles for the filters and search bar */
+        .filter-section {
+            margin-top: 20px;
+        }
+
+        .filter-label {
+            font-weight: bold;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .search-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Add styles for suggestions container */
+        #suggestions {
+            border: 1px solid #ccc;
+            position: absolute;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <!-- Add auto-suggest script -->
+    <script>
+$(document).ready(function() {
+    $("#searchQuery").on("input", function() {
+        var input = $(this).val();
+        var selectedCity = $("#cityFilter").val(); // Get the selected city
+
+        // AJAX request to fetch auto-suggestions
+        $.ajax({
+            type: "GET",
+            url: "auto_suggest.php",
+            data: { input: input, city: selectedCity },
+            dataType: "json", // Expect JSON response
+            success: function(response) {
+                // Display suggestions in a dropdown or other UI element
+                // Update or create an HTML element to show suggestions
+                displaySuggestions(response);
+            }
+        });
+    });    
+            // Handle suggestion item click
+            $(document).on("click", ".suggestion-item", function() {
+                // Set the clicked suggestion as the search query
+                $("#searchQuery").val($(this).text());
+    
+                // Hide the suggestions container
+                $("#suggestions").hide();
+            });
+    
+            // Hide suggestions on document click
+            $(document).on("click", function(e) {
+                if (!$(e.target).closest("#suggestions").length) {
+                    $("#suggestions").hide();
+                }
+            });
+    
+            function displaySuggestions(suggestions) {
+                // Update or create an HTML element to show suggestions
+                var suggestionsContainer = $("#suggestions");
+                suggestionsContainer.empty(); // Clear previous suggestions
+    
+                if (suggestions.length > 0) {
+                    // Build the suggestion list
+                    var suggestionList = $("<ul>");
+                    suggestions.forEach(function(suggestion) {
+                        var listItem = $("<li>").addClass("suggestion-item").text(suggestion);
+                        suggestionList.append(listItem);
+                    });
+    
+                    // Append the suggestion list to the container
+                    suggestionsContainer.append(suggestionList);
+    
+                    // Show the suggestions container
+                    suggestionsContainer.show();
+                } else {
+                    // Hide the suggestions container if no suggestions
+                    suggestionsContainer.hide();
+                }
+            }
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="logo">EventPlanner</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="login-button" href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>Search for Events or Services</h2>
+                <p>Enter your search query and apply filters below:</p>
+
+                <!-- Search Form -->
+                <form action="search_results.php" method="GET">
+                    <label for="searchQuery">Search:</label>
+                    <input type="text" id="searchQuery" name="q" class="search-bar" >
+
+                    <!-- Suggestions Container -->
+                    <div id="suggestions"></div>
+
+                    <!-- City Filter -->
+                    <div class="filter-section">
+                        <label for="cityFilter" class="filter-label">City:</label>
+                        <select id="cityFilter" name="city" class="filter-input">
+                            <option value="Munich">Munich</option>
+                            <option value="Berlin">Berlin</option>
+                            <option value="Hamburg">Hamburg</option>
+                            <option value="Bremen">Bremen</option>
+                        </select>
+                    </div>
+
+                    <!-- Vendor Type Filter -->
+                    <div class="filter-section">
+                        <label for="vendorFilter" class="filter-label">Vendor Type:</label>
+                        <select id="vendorFilter" name="vendor" class="filter-input">
+                            <option value="Catering">Catering</option>
+                            <option value="Venue">Venue</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2023 EventPlanner | <a href="imprint.html">Imprint</a>
+        </div>
+    </footer>
+</body>
+</html>

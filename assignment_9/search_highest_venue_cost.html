@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Venues by Cost - EventPlanner</title>
+    <link rel="stylesheet" type="text/css" href="event-planning-style.css">
+    <style>
+        /* Add custom styles for the search bar */
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .search-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 id="logo">EventPlanner</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="login-button" href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <section>
+                <h2>Search Venues by Cost</h2>
+                <p>Enter the cost range to search for venues:</p>
+
+                <!-- Search Form -->
+                <form action="search_venues_by_cost_results.php" method="GET">
+                    <label for="minCost">Minimum Cost:</label>
+                    <input type="number" id="minCost" name="min_cost" class="search-bar" step="0.01" placeholder="0.00" required>
+
+                    <label for="maxCost">Maximum Cost:</label>
+                    <input type="number" id="maxCost" name="max_cost" class="search-bar" step="0.01" placeholder="1000.00" required>
+
+                    <button type="submit" class="search-button">Search Venues</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2023 EventPlanner | <a href="imprint.html">Imprint</a>
+        </div>
+    </footer>
+</body>
+</html>
