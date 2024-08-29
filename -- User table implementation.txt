@@ -1,0 +1,89 @@
+-- User table implementation
+CREATE TABLE User (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    zipCode INT NOT NULL CHECK (zipCode >= 10000 AND zipCode <= 99999)
+);
+
+-- Person table implementation
+CREATE TABLE Person (
+    person_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+-- Vendor table implementation
+CREATE TABLE Vendor (
+    vendor_id INT AUTO_INCREMENT PRIMARY KEY,
+    person_id INT NOT NULL,
+    vendorName VARCHAR(255) NOT NULL,
+    vendorType VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    email VARCHAR(255),
+    phone VARCHAR(15),
+    website VARCHAR(255),
+    address VARCHAR(255) NOT NULL,
+    zipCode INT NOT NULL CHECK (zipCode >= 10000 AND zipCode <= 99999),
+    city VARCHAR(255) NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+);
+
+-- Catering table implementation (assuming Catering is a subclass of Vendor)
+CREATE TABLE Catering (
+    catering_id INT AUTO_INCREMENT PRIMARY KEY,
+    vendor_id INT NOT NULL,
+    cateringDetails TEXT NOT NULL,
+    FOREIGN KEY (vendor_id) REFERENCES Vendor(vendor_id)
+);
+
+-- Host table implementation (assuming Host is a subclass of Person)
+CREATE TABLE Host (
+    host_id INT AUTO_INCREMENT PRIMARY KEY,
+    person_id INT NOT NULL,
+    hostDetails TEXT NOT NULL,
+    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+);
+
+
+
+-- Guest table implementation
+CREATE TABLE Guest (
+    guest_id INT AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    guestCategory ENUM('Adult', 'Kid', 'Baby') NOT NULL,
+    confirmed ENUM('Confirmed', 'Not confirmed') NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+
+-- Venue table implementation
+CREATE TABLE Venue (
+    venue_id INT AUTO_INCREMENT PRIMARY KEY,
+    venueName VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    website VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    zipCode INT NOT NULL CHECK (zipCode >= 10000 AND zipCode <= 99999),
+    city VARCHAR(255) NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL
+);
+
+
+
+
+-- Event table implementation
+CREATE TABLE Event (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    venueName VARCHAR(255),
+    cost DECIMAL(10, 2) NOT NULL,
+    person_id INT NOT NULL
+);
+
+
